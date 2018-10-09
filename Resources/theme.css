@@ -1,0 +1,1413 @@
+/***********************************************************************************
+ * Theme Style Sheet
+ *
+ * Customize the look-and-feel of the portal using this style sheet.
+ *
+ * Use the quick configuration options provided at the top of the file to customize the
+ * portal color palette, typography, and layout.
+ *
+ * This style sheet uses Angular Material Themes. For more information, see:
+ *
+ * https://material.angular.io/guides
+ *
+ ***********************************************************************************/
+ @import 'themes/material_theming.scss';
+ @include mat-core();
+ 
+ // The base theme to use [light | dark]
+ // This option will determine background and foreground colors
+ $base-theme: light;
+ 
+ /**
+  * Color Palettes
+  *
+  * Define the color palettes used by a subset of UI elements in the portal,
+  * including: highlighted text, toolbars, buttons, links, and card headers. Each
+  * palette defines a color and three hue variations: default, lighter, and darker.
+  *
+  * Use the colors defined in the base Angular Material library or define your own
+  * custom colors.
+  *
+  * For more information about Material Color Palettes and a list of predefined colors,
+  * see:
+  *
+  * https://material.io/design/color/the-color-system.html
+ 
+  * For examples of defining custom colors, see the Angular Material
+  * library source code:
+  *
+  * https://docs-publishapis.apigee.io/files/material-theming.scss.txt
+  *
+  */
+ $primary: mat-palette($mat-grey, 800, 100, 900); // Toolbars, card headers, and buttons
+ $secondary: mat-palette($mat-green, 700, 100, 900); // <pre> and <code> text
+ $accent: mat-palette($mat-blue, 600, 700, 900); // Links and accented buttons
+ $warn: mat-palette($mat-red); // Warnings and errors
+ 
+ /**
+  * Typography
+  *
+  * Define the style of text used in the following sections of the portal:
+  * header, footer, context bar, and main content area.
+  *
+  * First, import the fonts you plan to use in your typography. For a list of
+  * free fonts, see:
+  *
+  * https://fonts.google.com/
+  *
+  * Define each typography by specifying the default font family and its variations.
+  * Each variation specifies a unique font size, line height, and font weight.
+  * An optional fourth parameter can be specified to define an override value for the base
+  * font family.
+  *
+  * For more information on Angular Material Typography, see:
+  *
+  * https://material.angular.io/guide/typography
+  *
+  */
+ @import url('https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700');
+ @import url('https://fonts.googleapis.com/css?family=Oxygen:300,300i,400,400i,700');
+ 
+ // Header typography
+ $typography-header: mat-typography-config(
+     $font-family: 'Roboto, "Oxygen", sans-serif',
+     $button: mat-typography-level(14px, 14px, 700), // Menu buttons
+     $body-1: mat-typography-level(14px, 14px, 400) // Sub-menu items
+ );
+ 
+ // Footer typography
+ $typography-footer: mat-typography-config(
+     $font-family: 'Roboto, "Oxygen", sans-serif',
+     $body-1: mat-typography-level(14px, 14px, 400), // Menu buttons
+     $button: mat-typography-level(14px, 14px, 700) // Sub-menu items
+ );
+ 
+ // Context bar typography
+ $typography-context-bar: mat-typography-config(
+     $font-family: 'Roboto, "Oxygen", sans-serif',
+     $headline: mat-typography-level(24px, 32px, 400), // Title
+     $button: mat-typography-level(14px, 14px, 500) // Action buttons
+ );
+ 
+ // Main content typography (includes dialog and notification popups)
+ $typography-main-content: mat-typography-config(
+     $font-family: 'Roboto, "Oxygen", sans-serif',
+     $display-4: mat-typography-level(112px, 112px, 300), // One-off huge headers
+     $display-3: mat-typography-level(56px, 56px, 400), // One-off large headers
+     $display-2: mat-typography-level(45px, 48px, 400), // One-off medium headers
+     $display-1: mat-typography-level(34px, 40px, 400), // One-off small headers
+     $headline: mat-typography-level(24px, 32px, 400), // <h1> tags
+     $title: mat-typography-level(20px, 32px, 500), // <h2> tags
+     $subheading-2: mat-typography-level(16px, 28px, 400), // <h3> tags
+     $subheading-1: mat-typography-level(15px, 24px, 400), // <h4> tags
+     $body-2: mat-typography-level(14px, 24px, 500), // Bolder body text
+     $body-1: mat-typography-level(16px, 22px, 400), // Base body text
+     $caption: mat-typography-level(12px, 20px, 400), // Smaller body and hint text
+     $button: mat-typography-level(14px, 14px, 500), // Buttons
+     $input: mat-typography-level(16px, 1.125, 400) // Input form fields
+ );
+ 
+ /***********************************************************************************
+  * Layout
+  *
+  * Customize the layout of your portal using the basic configuration options
+  * provided below.
+  *
+  * For more fine-grained control of the layout, see the Advanced Configuration
+  * section.
+  *
+  ***********************************************************************************/
+ 
+ // Responsive Breakpoint
+ //
+ // If the width of the browser window is greater than or equal to the value specified
+ // below, the portal layout will be optimized for desktop displays; othwerise, the layout
+ // will be optimized for mobile displays.
+ $layout-responsive-breakpoint: 900px;
+ 
+ // Header
+ $layout-header-height: 44px;
+ $layout-header-horiz-padding: 166px;
+ 
+ $layout-header-logo-mobile-height: 32px;
+ $layout-header-logo-mobile-width: 158px;
+ 
+ $layout-header-logo-desktop-height: 32px;
+ $layout-header-logo-desktop-width: 196px;
+ 
+ $layout-header-menu-item-height: 36px;
+ $layout-header-menu-item-horiz-padding: 16px;
+ 
+ $layout-header-nested-menu-item-vert-padding: 5px;
+ 
+ $layout-header-menu-resp-item-height: 64px;
+ 
+ // Footer
+ $layout-footer-height: 24px;
+ 
+ $layout-footer-menu-item-height: 36px;
+ $layout-footer-menu-item-horiz-padding: 16px;
+ 
+ $layout-footer-nested-menu-item-vert-padding: 5px;
+ 
+ // Context Bar
+ $layout-context-bar-height: 60px;
+ $layout-context-bar-horiz-padding: 166px;
+ 
+ $layout-context-bar-button-height: 36px;
+ $layout-context-bar-button-horiz-padding: 16px;
+ 
+ // Main Content
+ $layout-main-content-horiz-padding: 166px;
+ $layout-main-content-vert-padding: 38px;
+ 
+ /***********************************************************************************
+  * Advanced Configuration
+  *
+  * For more advanced styling and fine-grained control over the look-and-feel of your
+  * portal, modify the core SCSS content below.
+  *
+  * NOTE: Advanced users only. Apigee recommends that you have experience
+  *       with advanced CSS/SCSS concepts before making changes in this section.
+  *
+  * The SCSS applies the configuration options defined above.
+  * You may choose to incorporate the theming framework into your own SCSS or
+  * define all color and typography values in-line.
+  *
+  ***********************************************************************************/
+ 
+ /**
+  * Angular Material Theme
+  *
+  * Initialize the theme using the configuration options provided above.
+  */
+ @if $base-theme == dark {
+     $theme: mat-dark-theme($primary, $accent, $warn) !global;
+ } @else if $base-theme == light {
+     $theme: mat-light-theme($primary, $accent, $warn) !global;
+ } @else {
+     @error "Invalid value set for base-theme. Use 'light' or 'dark'"
+ }
+ @include angular-material-theme($theme);
+ 
+ // The background and foreground color palettes are predefined by the base theme.
+ // If you wish to overwrite these palettes, define your own base theme.
+ $background: map-get($theme, background);
+ $foreground: map-get($theme, foreground);
+ 
+ // Apply the base typography to each section of the page, including their
+ // respective overlays.
+ @include mat-base-typography($typography-header, '.nav-header');
+ @include mat-base-typography($typography-header, '.cdk-overlay-container .nested-menu-header');
+ 
+ @include mat-base-typography($typography-footer, '.nav-footer');
+ @include mat-base-typography($typography-footer, '.cdk-overlay-container .nested-menu-footer');
+ 
+ @include mat-base-typography($typography-context-bar, '.context-bar');
+ @include mat-base-typography($typography-context-bar, '.cdk-overlay-container .nested-menu');
+ 
+ @include mat-base-typography($typography-main-content, '.main-content');
+ @include mat-base-typography($typography-main-content, '.cdk-overlay-container');
+ 
+ /**
+  * Responsive Breakpoint
+  *
+  * By default, the SCSS is optimized for mobile displays. If the display size exceeds
+  * the breakpoint value defined below, the styles will be optimized for desktop displays.
+  */
+ @mixin for-desktop {
+     @media (min-width: $layout-responsive-breakpoint) { @content; }
+ }
+ 
+ /**
+  * Custom Pages
+  *
+  * Define the styles for custom pages below. Each custom page element
+  * will have an ID that matches the path of the page. The page element will
+  * include the context bar, main content area, and footer, allowing
+  * customization of each section on a per-page basis.
+  */
+ 
+ // Home Page (Path: /index)
+ #index {
+ 
+     // Hide context bar for homepage
+     &.context-bar {
+         display: none;
+     }
+ 
+     &.main {
+ 
+         // Adjust height of main content pane to compensate for missing
+         // context bar
+         height: calc(100% - #{$layout-header-height});
+         margin-top: $layout-header-height;
+ 
+         .main-content {
+             min-height: 100%;
+ 
+             // Adjust height to compensate for included footer when
+             // display size is desktop or larger.
+             @include for-desktop {
+                 min-height: calc(100% - #{$layout-footer-height});
+             }
+ 
+             // Remove padding to allow image to occupy the entire content area
+             padding: 0;
+             background-image: url('/files/home-background.jpg');
+             background-size: cover;
+         }
+     }
+ 
+     .home-page {
+         min-height: 100%;
+         text-align: center;
+ 
+         .home-page-cta {
+ 
+             // Text is always white to contrast with the background image
+             color: $white-87-opacity;
+             padding: 48px 0 66px 0;
+ 
+             // Use larger fonts for headers
+             h1.home-page-cta-title {
+                 @include mat-typography-level-to-styles($typography-main-content, display-3);
+             }
+ 
+             h2.home-page-cta-subtitle {
+                 @include mat-typography-level-to-styles($typography-main-content, headline);
+             }
+ 
+             #home-page-cta-get-started {
+                 width: 171px;
+                 height: 45px;
+                 padding: 6px;
+                 font-weight: 700;
+                 font-size: 16px;
+                 margin-top: 12px;
+                 text-transform: uppercase;
+             }
+         }
+ 
+         .home-page-cards {
+             display: flex;
+             align-items: flex-start;
+             justify-content: center;
+             flex-wrap: wrap;
+ 
+             .home-page-card {
+                 width: 316px;
+                 padding: 0;
+                 margin: 0 37px 37px 37px;
+                 outline: none;
+                 cursor: pointer;
+ 
+                 .home-page-card-header {
+                     background-color: mat-color($primary, default);
+                     display: flex;
+                     align-items: center;
+                     padding: 18px 16px;
+                     color: mat-color($primary, default-contrast);
+ 
+                     .mat-card-header-text {
+                         margin: 0;
+                     }
+ 
+                     .home-page-card-header-text {
+                         margin: 0px 8px;
+                     }
+                 }
+ 
+                 .home-page-card-content {
+                     border-bottom: 2px solid  mat-color($foreground, divider);
+                     margin-bottom: 0;
+ 
+                     .home-page-card-content-text {
+                         min-height: 112px;
+                         box-sizing: border-box;
+                         padding: 18px;
+                         text-align: left;
+                     }
+                 }
+ 
+                 .home-page-card-actions {
+                     text-align: right;
+                     padding: 3px;
+                     margin: 0;
+ 
+                     .home-page-card-action {
+                         text-transform: uppercase;
+                     }
+                 }
+             }
+         }
+     }
+ }
+ 
+ /**
+  * Default Styles
+  *
+  * Define styles for common portal elements, including: background, text,
+  * links, headers, tables, and so on.
+  */
+ body {
+     height: 100%;
+     width: 100%;
+     position: fixed;
+     margin: 0;
+     background-color: map-get($background, background);
+     color: map-get($foreground, text);
+ 
+     // Apply the main-content typography to the overlay of the body element
+     .cdk-overlay-container {
+         @include mat-checkbox-typography($typography-main-content);
+         @include angular-material-typography($typography-main-content);
+     }
+ 
+     // Default link formatting (omit all material components that
+     // can be combined with an anchor)
+     a:not([class*="mat-"]) {
+         text-decoration: none;
+         color: mat-color($accent, default);
+ 
+         &:visited {
+             color: map-get($mat-purple, 500);
+         }
+ 
+         &:hover {
+             transition: all 0.2s ease-in-out;
+             color: darken(mat-color($accent, default), 10%);
+             text-decoration: underline;
+ 
+             &:visited {
+                 color: darken(map-get($mat-purple, 500), 10%);
+             }
+         }
+     }
+ 
+     // Default list formatting
+     li {
+         margin-bottom: 12px;
+ 
+         // Add top margin for nested lists
+         ul,ol {
+             margin-top: 12px;
+         }
+     }
+ 
+     // Default table formatting
+     table {
+         text-align: left;
+         margin: 12px 0;
+ 
+         tr {
+             height: 40px;
+         }
+ 
+         th {
+             @include mat-typography-level-to-styles($typography-main-content, caption);
+ 
+             border-bottom: 1px solid map-get($foreground, divider);
+             color: map-get($foreground, secondary-text);
+             padding-bottom: 12px;
+         }
+ 
+         td {
+             border-bottom: 1px solid map-get($foreground, divider);
+         }
+     }
+ 
+     // Default code formatting
+     pre, code {
+         color: mat-color($secondary, default);
+     }
+ 
+     pre {
+         padding: 12px 16px;
+         border-radius: 2px;
+         border: 1px solid;
+ 
+         // Adjust colors according to base theme used
+         @if $base-theme == dark {
+             background-color: lighten(map-get($background, background), 5%);
+             border-color: lighten(map-get($background, background), 10%);
+         } @else if $base-theme == light {
+             background-color: darken(map-get($background, background), 5%);
+             border-color: darken(map-get($background, background), 10%);
+         }
+     }
+ 
+     code {
+         padding: 0;
+         border-radius: 0;
+         word-wrap: break-word;
+     }
+ 
+     // Default block quote formatting
+     blockquote {
+         border-left: 2px solid;
+         padding-left: 5px;
+         line-height: 200%;
+ 
+         // Adjust colors according to base theme used
+         @if $base-theme == dark {
+             background-color: lighten(map-get($background, background), 5%);
+             border-color: lighten(map-get($background, background), 35%);
+         } @else if $base-theme == light {
+             background-color: darken(map-get($background, background), 5%);
+             border-color: darken(map-get($background, background), 35%);
+         }
+     }
+ 
+     // Default mat-card formatting
+     .mat-card .mat-card-header {
+         background-color: mat-color($primary, default);
+         color: mat-color($primary, default-contrast);
+     }
+ 
+     // Default empty message formatting (no APIs, no APPs, 404, ect.)
+     .empty-message {
+         text-align: center;
+ 
+         .empty-message-image {
+             margin-top: 125px;
+             font-size: 120px;
+             height: 120px;
+             width: 120px;
+         }
+ 
+         h1 {
+             margin-top: 30px;
+         }
+ 
+         h2 {
+             margin-top: 20px;
+ 
+             .empty-message-login-link {
+                 cursor: pointer;
+             }
+         }
+     }
+ 
+     // Workaround for button color inheritance bug:
+     //
+     // https://github.com/angular/material2/issues/4614
+     //
+     // Based on the following patch:
+     //
+     // https://github.com/angular/material2/pull/9771/commits/32b234e24b9dad83920b916776eb55adf3a7add7
+     .mat-button, .mat-icon-button, .mat-stroked-button {
+         color: inherit;
+         @include _mat-button-theme-color($theme, 'color', default);
+         @include _mat-button-focus-color($theme);
+         @include _mat-button-ripple-color($theme, default);
+     }
+ 
+     .mat-flat-button, .mat-raised-button, .mat-fab, .mat-mini-fab {
+         color: mat-color($foreground, text);
+         @include _mat-button-theme-color($theme, 'color', default-contrast);
+         @include _mat-button-theme-color($theme, 'background-color', default);
+         @include _mat-button-ripple-color($theme, default-contrast);
+     }
+ }
+ 
+ /**
+  * Template
+  *
+  * Define styles for the main template elements (main content area, header, footer,
+  * navigation menus, and context bar).
+  */
+ 
+ // Main Content
+ .main {
+     overflow-y: auto;
+ 
+     // Adjust height and top margin to compensate for the header and context bar
+     height: calc(100% - #{$layout-header-height + $layout-context-bar-height});
+     margin-top: $layout-header-height + $layout-context-bar-height;
+ 
+     .main-content {
+ 
+         // Apply typography specific to main content
+         @include mat-checkbox-typography($typography-main-content);
+         @include angular-material-typography($typography-main-content);
+ 
+         padding: $layout-main-content-vert-padding 16px;
+         min-height: calc(100% - #{$layout-main-content-vert-padding * 2});
+ 
+         // Adjust height to compensate for included footer and change horizontal padding
+         // when display size is desktop or larger
+         @include for-desktop {
+             min-height: calc(100% - #{$layout-footer-height + ($layout-main-content-vert-padding * 2)});
+             padding: $layout-main-content-vert-padding $layout-main-content-horiz-padding;
+         }
+     }
+ }
+ 
+ // Header
+ .nav-header {
+ 
+     // Apply typography specific to header
+     @include mat-checkbox-typography($typography-header);
+     @include angular-material-typography($typography-header);
+ 
+     .mat-toolbar {
+         @extend .mat-elevation-z6; // Add drop shadow
+         position: fixed;
+         left: 0;
+         right: 0;
+         z-index: 10;
+         top: 0;
+         min-height: $layout-header-height;
+         height: $layout-header-height;
+ 
+         // Increase the left and right header padding for displays desktop size or larger
+         @include for-desktop {
+             padding: 0 $layout-header-horiz-padding;
+         }
+ 
+         .nav-header-spacer.left {
+             -webkit-box-flex: 1;
+             flex-grow: 1; // Grow left spacer to right-justify links
+             display: none; // hide by default
+ 
+             // Show spacer for displays desktop size or larger
+             @include for-desktop {
+                 display: inline-block;
+             }
+         }
+ 
+         .site-logo {
+             cursor: pointer;
+             outline: none;
+ 
+             &.normal {
+                 display: none;
+                 height: $layout-header-logo-desktop-height;
+                 width: $layout-header-logo-desktop-width;
+ 
+                 // Show the normal logo for displays desktop size or larger
+                 @include for-desktop {
+                     display: inline-block;
+                 }
+             }
+ 
+             &.mobile {
+                 height: $layout-header-logo-mobile-height;
+                 width: $layout-header-logo-mobile-width;
+ 
+                 // Hide the mobile logo for displays desktop size or larger
+                 @include for-desktop {
+                     display: none;
+                 }
+             }
+         }
+ 
+         .mat-toolbar-row {
+             height: $layout-header-height;
+             justify-content: center;
+ 
+             // Normalize content justification for displays desktop size or larger
+             @include for-desktop {
+                 justify-content: normal;
+             }
+         }
+ 
+         .mat-button {
+             height: $layout-header-menu-item-height;
+             line-height: $layout-header-menu-item-height;
+         }
+ 
+         // Tweak the display of nested menu items to align text and button size with
+         // other items that are not embedded in the nested-menu element and do not
+         // have icons.
+         .nested-menu {
+             display: flex;
+ 
+             .parent-menu-item.mat-button {
+                 line-height: #{$layout-header-menu-item-height - 2};
+             }
+         }
+ 
+         .menu-item, .parent-menu-item {
+             display: none; // Hidden by default
+             padding: 0 $layout-header-menu-item-horiz-padding;
+ 
+             // Show normal menu items for displays desktop size or larger
+             @include for-desktop {
+                 display: inline-block;
+             }
+         }
+     }
+ }
+ 
+ // Footer
+ .nav-footer {
+ 
+     // Apply typography specific to footer
+     @include mat-checkbox-typography($typography-footer);
+     @include angular-material-typography($typography-footer);
+ 
+     display: none; // Hidden by default
+ 
+     // Show footer nav for displays desktop size or larger
+     @include for-desktop {
+         display: block;
+     }
+ 
+     .mat-toolbar {
+         min-height: $layout-footer-height;
+         height: $layout-footer-height;
+         bottom: 0;
+ 
+         // Grow left and right spacers to center links
+         .nav-footer-spacer.left,
+         .nav-footer-spacer.right {
+             -webkit-box-flex: 1;
+             flex-grow: 1;
+         }
+ 
+         .mat-toolbar-row {
+             height: $layout-footer-height;
+         }
+ 
+         .mat-button {
+             color: mat-color($primary, 400);
+             height: $layout-footer-menu-item-height;
+             line-height: $layout-footer-menu-item-height;
+         }
+ 
+         // Tweak the display of nested menu items to align text and button size with
+         // other items that are not embedded in the nested-menu element and do not
+         // have icons.
+         .nested-menu {
+             display: flex;
+ 
+             .parent-menu-item.mat-button {
+                 line-height: #{$layout-header-menu-item-height - 2};
+             }
+         }
+ 
+         .menu-item, .parent-menu-item {
+             padding: 0 $layout-footer-menu-item-horiz-padding;
+         }
+     }
+ }
+ 
+ // Context Bar
+ .context-bar.mat-toolbar {
+ 
+     // Apply typography specific to context bar
+     @include mat-checkbox-typography($typography-context-bar);
+     @include angular-material-typography($typography-context-bar);
+ 
+     min-height: $layout-context-bar-height;
+     height: $layout-context-bar-height;
+     top: $layout-header-height; // Offset top of context bar to match bottom of header
+     position: fixed;
+     left: 0;
+     right: 0;
+     z-index: 8; // Slightly below header and responsive menu z-index
+ 
+     // Increase the left and right header padding for displays desktop size or larger
+     @include for-desktop {
+         padding: 0 $layout-context-bar-horiz-padding;
+     }
+ 
+     .mat-toolbar-row {
+         height: $layout-context-bar-height;
+     }
+ 
+     .context-bar-title {
+         margin: 0;
+     }
+ 
+     .context-bar-spacer {
+         -webkit-box-flex: 1;
+         flex-grow: 1;
+     }
+ 
+     .context-bar-button {
+         height: $layout-context-bar-button-height;
+         line-height: $layout-context-bar-button-height;
+         padding: 0 $layout-context-bar-button-horiz-padding;
+     }
+ }
+ 
+ // Nested Menu (shared styles between header and footer)
+ .nested-menu-footer,
+ .nested-menu-header {
+     position: relative;
+ 
+     // Remove limits on mat menu width to fit text
+     max-width: none !important;
+     min-width: 0 !important;
+ 
+     .mat-menu-content {
+         padding-top: 0;
+         padding-bottom: 0;
+     }
+ 
+     .mat-menu-item.nested-menu-item.top-level-link {
+         color: mat-color($foreground, text); // Override disabled text color
+         border-bottom: 1px solid mat-color($foreground, divider);
+     }
+ 
+     .nested-menu-items {
+         padding-top: 8px;
+         padding-bottom: 8px;
+     }
+ }
+ 
+ // Nested Menu (header specific styles)
+ .nested-menu-header {
+ 
+     // Center with header so the top level menu item overlays the menu toggle button
+     top: #{($layout-header-menu-item-height - $layout-header-height) / 2};
+ 
+     .mat-menu-item.nested-menu-item.top-level-link {
+ 
+         // Match the typography of the menu toggle header button
+         @include mat-typography-level-to-styles($typography-header, button);
+ 
+         padding: 0 $layout-header-menu-item-horiz-padding;
+         height: $layout-header-height;
+         line-height: $layout-header-height;
+     }
+ 
+     .mat-menu-item.nested-menu-item {
+         @include mat-typography-level-to-styles($typography-header, body-1);
+ 
+         // Match item height to line height to center text vertically
+         height: mat-line-height($typography-header, body-1);
+ 
+         // Match header button padding, to align text
+         padding: $layout-header-nested-menu-item-vert-padding
+                  $layout-header-menu-item-horiz-padding;
+     }
+ }
+ 
+ // Nested Menu (footer specific styles)
+ .nested-menu-footer {
+ 
+     // Center with footer so the top level menu item overlays the menu toggle button
+     top: #{($layout-footer-height - $layout-footer-menu-item-height) / 2};
+ 
+     .mat-menu-item.nested-menu-item.top-level-link {
+ 
+         // Match the typography of the menu toggle footer button
+         @include mat-typography-level-to-styles($typography-footer, button);
+ 
+         padding: 0 $layout-footer-menu-item-horiz-padding;
+         height: $layout-footer-height;
+         line-height: $layout-footer-height;
+     }
+ 
+     .mat-menu-item.nested-menu-item {
+         @include mat-typography-level-to-styles($typography-footer, body-1);
+ 
+         // Match item height to line height to center text vertically
+         height: mat-line-height($typography-footer, body-1);
+ 
+         // Match footer button padding, to align text
+         padding: $layout-footer-nested-menu-item-vert-padding
+                  $layout-footer-menu-item-horiz-padding;
+     }
+ }
+ 
+ // Responsive Menu Toggle Button
+ .nav-header .responsive-menu-toggle {
+     position: absolute;
+     left: 23px;
+ 
+     // Hide responsive menu toggle button for displays desktop size or larger
+     @include for-desktop {
+         display:none;
+     }
+ }
+ 
+ // Responsive Menu
+ .responsive-menu-header {
+     position: absolute;
+     top: $layout-header-height;
+     left: 0;
+     width: 100%;
+     z-index: 9; // slightly below header
+ 
+     // Hide responsive menu for displays desktop size or larger
+     @include for-desktop {
+         display: none;
+     }
+ 
+     .responsive-menu-item-container {
+         width: 100%;
+ 
+         // Add separators between menu items
+         // The hue is not part of the defined palette, but is a slightly lighter
+         // variation of the default color
+         &:not(:last-child) {
+             border-bottom: lighten(mat-color($primary, default), 10%) 1px solid;
+         }
+ 
+         .responsive-menu-item-expand {
+             position: absolute;
+             left: 26px; // Center with open/close button in header
+             line-height: $layout-header-menu-resp-item-height !important;
+             height: $layout-header-menu-resp-item-height;
+             z-index: 10; // Put expand button in front of menu item
+         }
+ 
+         .responsive-menu-item {
+             width: 100%;
+             height: $layout-header-menu-resp-item-height;
+ 
+             // Set line-height to allow text-align to work
+             text-align: center;
+             line-height: $layout-header-menu-resp-item-height !important;
+ 
+             &.nested-menu-item {
+                 // The hue is not part of the defined palette, but is a slightly darker
+                 // variation of the default color
+                 background-color: darken(mat-color($primary, default), 5%);
+             }
+         }
+     }
+ }
+ 
+ /**
+  * Dialogs
+  *
+  * Styles for all modal and notification (snackbar) popups.
+  */
+ 
+ // Dialog (shared styles between confirmation and auth dialogs)
+ .confirm-dialog-container .mat-dialog-container,
+ .auth-dialog-container .mat-dialog-container {
+     padding: 0;
+ 
+     .confirm-dialog,
+     .auth-dialog {
+         max-width: 500px;
+ 
+         .confirm-dialog-header,
+         .auth-dialog-header {
+             display: flex;
+             align-items: center;
+             background-color: mat-color($primary);
+             color: mat-color($primary, default-contrast);
+             padding: 12px;
+ 
+             .confirm-dialog-header-text,
+             .auth-dialog-header-text {
+                 padding-left: 8px;
+                 margin: 0;
+             }
+         }
+ 
+         .confirm-dialog-body,
+         .auth-dialog-body {
+             padding: 18px;
+         }
+     }
+ }
+ 
+ // Auth Dialog
+ .auth-dialog .auth-dialog-body {
+ 
+     // Keep modal height smaller than window, and scroll if content is too
+     // large.
+     max-height: calc(100vh - 300px);
+     min-height: 200px;
+     overflow-y: scroll;
+ 
+     // Various span elements to be made bold
+     .auth-creds-message-username,
+     .auth-dialog-body-description-api {
+         font-weight: 500;
+     }
+ 
+     .mat-form-field {
+         font-weight: 500;
+         margin-right: 18px;
+     }
+ 
+     .mat-radio-button {
+         font-weight: 500;
+         margin-left: 10px
+     }
+ 
+     .api-key-auth-key-field,
+     .api-key-scheme-name-field{
+         display: block;
+     }
+ 
+     .oauth-waiting {
+         .process-spinner {
+             display: inline-block;
+ 
+             circle {
+ 
+                 // Adjust colors according to base theme used
+                 @if $base-theme == dark {
+                     stroke: darken(map-get($foreground, text), 38%);
+                 } @else if $base-theme == light {
+                     stroke: lighten(map-get($foreground, text), 38%);
+                 }
+             }
+         }
+ 
+         span {
+             vertical-align: 8px;
+ 
+             // Adjust colors according to base theme used
+             @if $base-theme == dark {
+                 color: darken(map-get($foreground, text), 38%);
+             } @else if $base-theme == light {
+                 color: lighten(map-get($foreground, text), 38%);
+             }
+         }
+     }
+ 
+     .auth-dialog-body-security-requirement {
+         padding-top: 10px;
+         margin-top: 20px;
+         border-top: 2px solid map-get($foreground, divider);
+ 
+         .auth-submit {
+             display: block;
+         }
+     }
+ }
+ 
+ // Create Application Dialog
+ .app-create {
+     width: 500px;
+     height: 220px;
+ 
+     .app-create-header {
+         display: flex;
+ 
+         .app-create-title {
+             flex-grow: 1;
+         }
+ 
+         .app-create-close-button {
+             margin-top: -10px;
+             margin-right: -10px;
+         }
+     }
+ 
+     .app-create-form {
+         margin: 16px 16px 0 16px;
+         position: relative;
+ 
+         .mat-form-field {
+             display: block;
+             width: 100%;
+         }
+ 
+         .app-create-submit {
+             position: absolute;
+             right: 0;
+         }
+     }
+ }
+ 
+ // Notification (snackbar)
+ .notification-bar-container .notification-bar {
+     display: flex;
+     align-items: center;
+ 
+     .notification-bar-spacer {
+         -webkit-box-flex: 1;
+         flex-grow: 1;
+     }
+ 
+     .notification-bar-text {
+         margin: 0 10px;
+     }
+ }
+ 
+ /**
+  * Predefined Pages
+  *
+  * Define styles for each of the predefined pages (API List, Docs, App List, and App Detail).
+  */
+ 
+ // API List (Path: /apis)
+ #apis {
+     .api-doc-filter-title {
+         @include mat-typography-level-to-styles($typography-main-content, caption);
+     }
+ 
+     .api-doc-list {
+         display: flex;
+         align-items: flex-start;
+         justify-content: center;
+         flex-wrap: wrap;
+ 
+         .api-doc-card {
+             width: 344px;
+             margin: 22px;
+             cursor: pointer;
+             padding: 0;
+             outline: none;
+ 
+             .api-doc-card-content {
+ 
+                 .api-doc-card-content-title-no-image {
+                     min-height: 70px;
+                     background-color: mat-color($primary);
+                     position: relative;
+ 
+                     .api-doc-card-content-title {
+                         color: mat-color($primary, default-contrast);
+                         margin: 0;
+                         height: 56px;
+                         display: table-cell;
+                         vertical-align: bottom;
+                         overflow-wrap: break-word;
+                         padding: 12px;
+                     }
+                 }
+ 
+                 .api-doc-card-content-image {
+                     width: 100%;
+                     height: 192px;
+                     background-size: cover !important;
+                     background-position: center !important;
+ 
+                     .api-doc-card-content-image-gradient {
+                         position: relative;
+                         width: 100%;
+                         height: 40%;
+                         top: 60%;
+                         background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.54));
+ 
+                         .api-doc-card-content-title {
+                             color: $white-87-opacity; // Always use white to contrast image
+                             max-width: 320px; // Card width minus title padding
+                             margin: 0;
+                             overflow-wrap: break-word;
+                             position: absolute;
+                             bottom: 0;
+                             padding: 12px;
+                         }
+                     }
+                 }
+ 
+                 .api-doc-card-content-description {
+                     min-height: 70px;
+                     overflow-wrap: break-word;
+                     overflow: hidden;
+                     padding: 0;
+                     margin: 12px;
+                 }
+             }
+         }
+     }
+ }
+ 
+ // Docs (Path: /docs)
+ //
+ // All of the styles for the reference documentation viewer are bundled with the application.
+ // The styles defined here are simply overrides to adjust the appearance of the base styling.
+ #docs.main .main-content {
+     padding: 0; // Padding is handled by docs viewer
+     height: 100%;
+ 
+     // Adjust height to compensate for included footer when display size is
+     // desktop or larger
+     @include for-desktop {
+         height: calc(100% - #{$layout-footer-height});
+     }
+ 
+     // Override default docs viewer style rules to match page layout
+     @media screen and (min-width: 1201px) {
+         .apis-explorer {
+             top: #{$layout-header-height + $layout-context-bar-height} !important;
+             bottom: 0 !important;
+ 
+             // Adjust bottom to compensate for included footer when display size is
+             // desktop or larger
+             @include for-desktop {
+                 bottom: $layout-footer-height !important;
+             }
+         }
+     }
+ 
+     .apis-explorer.apix-wide-layout {
+         top: #{$layout-header-height + $layout-context-bar-height} !important;
+         bottom: 0 !important;
+ 
+         // Adjust bottom to compensate for included footer when display size is
+         // desktop or larger
+         @include for-desktop {
+             bottom: $layout-footer-height !important;
+         }
+     }
+ }
+ 
+ // APPs List (Path: /my-apps)
+ #my-apps {
+     .apps-list {
+         @extend .mat-elevation-z6;
+         margin: 0 auto;
+         max-width: 900px;
+         min-width: 350px;
+         padding-bottom: 50px;
+         background-color: map-get($background, card);
+ 
+         .apps-list-title {
+             margin: 0;
+             padding: 24px 0 20px 24px;
+         }
+ 
+         .apps-list-table.mat-table {
+             .mat-row {
+                 outline: none
+             }
+ 
+             .mat-row:hover {
+                 cursor: pointer;
+ 
+                 // Adjust colors according to base theme used
+                 @if $base-theme == dark {
+                     background-color: lighten(map-get($background, card), 10%);
+                 } @else if $base-theme == light {
+                     background-color: darken(map-get($background, card), 10%);
+                 }
+             }
+         }
+     }
+ 
+     // No apps present. Majority of style for no-apps message handled by
+     // .empty-message selector, special style for button here.
+     .apps-list-empty {
+         #apps-list-empty-create-app {
+             width: 160px;
+             height: 50px;
+             line-height: 50px;
+             font-size: 18px;
+         }
+     }
+ }
+ 
+ // APP Detail (Path: /my-apps/<app id>)
+ #my-apps {
+     .app-loading {
+         text-align: center;
+ 
+         .process-spinner {
+             display: inline-block;
+         }
+     }
+ 
+     .app-card {
+         position: relative;
+         color: map-get($foreground, text);
+ 
+         .app-buttons {
+             position: absolute;
+             right: 0;
+             top: -30px;
+         }
+ 
+         .app-layout-section {
+             display: flex;
+             min-width: 500px;
+             margin: 0 16px;
+             padding: 32px 0 0 0;
+             border-bottom: 1px solid map-get($foreground, divider);
+ 
+             .app-layout-section-title {
+                 width: 300px;
+                 min-width: 80px;
+                 color: map-get($foreground, secondary-text);
+             }
+ 
+             .app-layout-section-content {
+                 width: 1200px;
+                 min-width: 400px;
+ 
+                 .mat-form-field {
+                     display: block;
+                     width: 400px;
+                 }
+             }
+         }
+ 
+         .app-layout-section:last-child {
+             border-bottom: none;
+         }
+     }
+ 
+     .app-section-overview {
+         .app-details-label {
+             color: map-get($foreground, secondary-text);
+             height: 24px;
+         }
+ 
+         .app-details-value {
+             margin-bottom: 24px;
+         }
+     }
+ 
+     .app-section-api-keys {
+         .app-add-key {
+             margin-top: 20px;
+             margin-bottom: 42px;
+             display: block;
+         }
+ 
+         .app-api-keys {
+             table {
+                 td {
+                     position: relative;
+ 
+                     .mat-icon-button {
+                         position: absolute;
+                         right: 0;
+                         display: inline-block;
+                         margin-top: -13px;
+ 
+                         .mat-icon {
+                             font-size: 16px;
+                         }
+                     }
+                 }
+ 
+                 .app-api-key:hover td {
+                     border-bottom: 1px solid map-get($foreground, hint-text);
+                 }
+             }
+ 
+             a:hover {
+                 cursor: pointer;
+             }
+ 
+             .app-api-key-value {
+                 width: 50%;
+                 min-width: 50px;
+             }
+ 
+             .app-api-key-value:before {
+                 content: '&nbsp;';
+                 visibility: hidden;
+             }
+ 
+             .app-api-key-value .table-entry-with-button {
+                 position: absolute;
+                 left: 0;
+                 right: 32px;
+                 white-space: nowrap;
+                 overflow: hidden;
+                 text-overflow: ellipsis;
+             }
+ 
+             .app-details-api-key-status {
+                 width: 15%;
+                 min-width: 30px;
+             }
+ 
+             .app-details-api-key-created {
+                 width: 25%;
+                 min-width: 80px;
+                 padding-right: 0;
+             }
+ 
+             .app-details-api-key-expires {
+                 width: calc(10% - 12px);
+                 min-width: 40px;
+             }
+ 
+             .app-details-api-key-revoke {
+                 width: 12px;
+                 min-width: 12px;
+                 padding-right: 0;
+ 
+                 .mat-icon-button {
+                     position: initial;
+                     margin: 0;
+                 }
+             }
+ 
+             .app-api-key-value {
+                 padding-right: 0;
+ 
+                 .mat-icon-button {
+                     visibility: hidden;
+                 }
+             }
+ 
+             .app-api-key-value:hover {
+                 .mat-icon-button {
+                     visibility: visible;
+                 }
+             }
+ 
+             .app-api-key-active .app-details-api-key-status {
+                 color: map-get($mat-green, 400);
+             }
+ 
+             .app-api-key-revoked {
+                 color: map-get($foreground, secondary-text);
+ 
+                 .app-details-api-key-status {
+                     color: map-get($mat-red, 200);
+                 }
+             }
+         }
+     }
+ 
+     .app-section-apis .app-api-subscriptions-product {
+         display: inline-block;
+         float: left;
+         height: 280px;
+         width: 224px;
+         margin: 10px;
+         padding: 0;
+         position: relative;
+ 
+         .app-api-subscriptions-product-image {
+             background-size: cover !important;
+             background-position: center !important;
+             background-color: rgba(0, 0, 0, 0.38);
+             width: 100%;
+             height: 50%;
+             position: relative;
+ 
+             .app-api-subscriptions-product-image-gradient {
+                 width: 100%;
+                 // Gradient should only take up bottom 40% of image
+                 height: 40%;
+                 top: 60%;
+                 position: relative;
+                 background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.54));
+ 
+                 .app-api-subscriptions-product-name {
+                     position: absolute;
+                     bottom: 0;
+                     margin: 0;
+                     color: $white-87-opacity;
+                     padding: 12px;
+                     max-width: calc(100% - 24px);
+                 }
+             }
+         }
+ 
+         .app-api-subscriptions-product-description {
+             padding: 12px 12px 0 12px;
+             min-height: 80px;
+             // multiline ellipsis not possible with pure CSS!
+             overflow: hidden;
+         }
+ 
+         .app-api-subscriptions-product-toggle {
+             position: absolute;
+             right: 20px;
+             bottom: 10px;
+         }
+     }
+ }
+ 

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<StatisticsCollector async="false" continueOnError="false" enabled="true" name="Statistics-Collector">
+    <DisplayName>Statistics Collector</DisplayName>
+    <Properties/>
+    <Statistics>
+        <Statistic name="recipient_company" ref="recipientCompany" type="String">Newco</Statistic>
+    </Statistics>
+    <Statistics>
+        <Statistic name="client_app" ref="developer.app.name" type="String">Sandbox-App</Statistic>
+    </Statistics>
+</StatisticsCollector>
