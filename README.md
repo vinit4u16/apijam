@@ -27,7 +27,7 @@ An API Proxy Bundle is a collection of API Proxy artifacts and policies that rep
 
 #### Instructions
 
-1. Download the Proxy bundle from the [API Jam repository](https://github.com/kford/apijam/raw/master/Resources/payments-apiproxy-bundle.zip). Click **Download**.
+1. Download the Proxy bundle from the [API Jam repository](https://github.com/vinit4u16/apijam/blob/master/Resources/employees-apiproxy-bundle.zip?raw=true). Click **Download**.
 
 ![image alt text](./images/image_0.png)
 
