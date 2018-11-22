@@ -38,12 +38,12 @@ An API Proxy Bundle is a collection of API Proxy artifacts and policies that rep
 3. Navigate the **Develop → API Proxies** on the left side menu, click **+Proxy** in the top right corner to invoke the Create Proxy Wizard. Then select **Proxy Bundle**, and click next. 
 ![image alt text](./images/image_2.png)
 
-4. You will need to click on the **Choose File** button next to the **ZIP Bundle** option and select the **payments-apiproxy-bundle.zip** from the Github repository you downloaded above. Enter the following details in the proxy wizard and click **Next**, then **Build.**
+4. You will need to click on the **Choose File** button next to the **ZIP Bundle** option and select the **employees-apiproxy-bundle.zip** from the Github repository you downloaded above. Enter the following details in the proxy wizard and click **Next**, then **Build.**
 
-    * Proxy Name : **&lt;&lt;YOUR-INITIALS&gt;&gt;_payments**
+    * Proxy Name : **&lt;&lt;YOUR-INITIALS&gt;&gt;_employees**
     * Click on the link to view your API proxy in Proxy Editor.
 
-5. Your API Proxy's base paths must be unique within an organization.  You can see the current base paths in the "Overview" tab of the API Proxy.  Your "default" proxy endpoint's base path should be set to "/v1/payments" and your "loadgenerator" proxy endpoint's base path should be set to "/v1/loadgenerator".  To avoid conflicting with others, change both of the base paths to include your initials.
+5. Your API Proxy's base paths must be unique within an organization.  You can see the current base paths in the "Overview" tab of the API Proxy.  Your "default" proxy endpoint's base path should be set to "/v1/employees" and your "loadgenerator" proxy endpoint's base path should be set to "/v1/loadgenerator".  To avoid conflicting with others, change both of the base paths to include your initials.
 ![Steps to update proxy endpoint base path](./images/image_41.png)
 
     * Click on the "Develop" Tab
@@ -70,7 +70,7 @@ NOTE - When you invoke this API, you will only see a `HTTP 200 OK` response.
     * If you are using the **Apigee REST client**
         * enter URL: https://{FQDN}/v1/{YOUR_INITIALS}_loadgenerator   (where {FQDN} is replaced with the URL in your API Overview Tab)
     * If you are using **cURL**, then an example is below
-        * ```curl -v -H 'basepath: /v1/{YOUR_INITIALS}_payments' https://{FQDN}/v1/{YOUR_INITIALS}_loadgenerator```
+        * ```curl -v -H 'basepath: /v1/{YOUR_INITIALS}_employees' https://{FQDN}/v1/{YOUR_INITIALS}_loadgenerator```
     * If you are using **Postman**, then call the loadgenerator API from your collection, including the basepath as above
 
 
@@ -92,13 +92,13 @@ The Spike Arrest policy protects against traffic spikes. It throttles the number
 
 ![image alt text](./images/image_4.png)
 
-2. Select **Overview** in the right side tab bar menu and copy the **Payments Deployments URL** for the **test** environment. 
+2. Select **Overview** in the right side tab bar menu and copy the **Employees Deployments URL** for the **test** environment. 
 
-3. Select **Trace** in the right side tab bar menu and the API Proxy configuration view will be displayed. Paste the Payments Proxy URL into the **Send Request URL** section.  Select **Start Trace Session**, then click the **Send** button a few times rapidly to trigger the **Spike Arrest** policy. Click on the **Spike Arrest** policy icon in the **Transaction Map** to view the flow details in the **Phase Details** section below. 
+3. Select **Trace** in the right side tab bar menu and the API Proxy configuration view will be displayed. Paste the Employees Proxy URL into the **Send Request URL** section.  Select **Start Trace Session**, then click the **Send** button a few times rapidly to trigger the **Spike Arrest** policy. Click on the **Spike Arrest** policy icon in the **Transaction Map** to view the flow details in the **Phase Details** section below. 
 ![image alt text](./images/image_5.png)
 
 * As an alternative to sending requests from the trace view, you can invoke the API proxy via **cURL** or the **Apigee REST Client**
-        curl https://{FQDN}/v1/<<YOUR_INITIALS>>_payments
+        curl https://{FQDN}/v1/<<YOUR_INITIALS>>_employees
 
 ### Verify API Key Policy
 The Verify API Key policy lets you enforce verification of API keys at runtime, letting only apps with approved API keys access your APIs. This policy ensures that API keys are valid, have not been revoked, and are approved to consume the specific resources associated with your API products. 
@@ -109,10 +109,10 @@ The Verify API Key policy lets you enforce verification of API keys at runtime, 
 ![image alt text](./images/image_7.png)
 
 2. Select **Trace** in the right side tab bar menu and the API Proxy configuration view is displayed and select **Start Trace Session**. Click the **Send** button in the **Send Request URL** section to trigger the **Verify API Key** policy. You should receive a HTTP 401 error.
-    * *note: verify that the URL in the trace tool is your payments proxy endpoint, not the loadgenerator proxy endpoint*
+    * *note: verify that the URL in the trace tool is your employees proxy endpoint, not the loadgenerator proxy endpoint*
 
     Alternatively...
-        curl -v https://{FQDN}/v1/<<YOUR_INITIALS>>_payments
+        curl -v https://{FQDN}/v1/<<YOUR_INITIALS>>_employees
 
 In a later lab, we will see how to acquire an API key which you can use to make successful (HTTP 200) calls, now that your API Proxy is secured
 
@@ -127,7 +127,7 @@ curl -X POST -H "Content-type:application/x-www-form-urlencoded" https://api.ent
 ```
 NOTE - Don't include `{` or `}` in your command. Here is a sample : 
 ```
-curl -X POST -H "Content-type:application/x-www-form-urlencoded" https://api.enterprise.apigee.com/v1/o/myorg/e/prod/apis/kf_payments/revisions/1/deployments -u myname@gmail.com
+curl -X POST -H "Content-type:application/x-www-form-urlencoded" https://api.enterprise.apigee.com/v1/o/myorg/e/prod/apis/vm_employees/revisions/1/deployments -u myname@gmail.com
 ```
 
 When prompted, enter your Apigee Password.
@@ -135,7 +135,7 @@ When prompted, enter your Apigee Password.
 You should see a success response which looks like this: 
 ```
 {
-  "aPIProxy" : "Payments",
+  "aPIProxy" : "Employees",
   "configuration" : {
     "basePath" : "/",
     "steps" : [ ]
@@ -172,7 +172,7 @@ We are going to package our Proxy into a Product, then grant access for an Appli
 
 ### Define a Product
 
-A Product is a logical grouping of Proxies.  In this section we will create a **Payments Silver** Product that contains our Proxy.
+A Product is a logical grouping of Proxies.  In this section we will create a **Employees Silver** Product that contains our Proxy.
 
 #### Instructions
 
@@ -183,11 +183,11 @@ A Product is a logical grouping of Proxies.  In this section we will create a **
 ![image alt text](./images/image_11.png)
 
 3. Configure the API Product
-    1. Name the product **&lt;&lt;YOUR_INITIALS&gt;&gt;_payments_silver**
+    1. Name the product **&lt;&lt;YOUR_INITIALS&gt;&gt;_employees_silver**
     2. Set the Environment to **test**
     3. Access to **Public**
     4. Key Approval to **Automatic**
-    5. Using the **+API Proxy** on the lower right, choose the **Payments** proxy from the dropdown list
+    5. Using the **+API Proxy** on the lower right, choose the **Employees** proxy from the dropdown list
     5. **Extra Credit**: Add a custom attribute called trusted-partner and set it to false.  Later on, once you're making secure calls leveraging this product, find the custom attribute in the trace view.  We'll talk more about it in Extra Credit.
     7. Click **Save**.
 
@@ -224,16 +224,16 @@ We grant an Application access to a Product. We will now define an Application t
 	![image alt text](./images/image_14.png)
 
 3. Configure the application
-    1. Name the application **&lt;&lt;YOUR_INITIALS&gt;&gt;_mobile_payments**
+    1. Name the application **&lt;&lt;YOUR_INITIALS&gt;&gt;_mobile_employees**
     2. If you have a choice of "Company" or "Developer", select "Developer".
     2. Choose the **Developer** you created earlier
-    3. Click the **+Product** and choose the **&lt;&lt;YOUR_INITIALS&gt;&gt;_payments_silver**
+    3. Click the **+Product** and choose the **&lt;&lt;YOUR_INITIALS&gt;&gt;_employees_silver**
     4. Add a custom attribute called sandbox, set to true
     5. Click **Save**.
 
 	![image alt text](./images/image_15.png)
 
-4. Choose the **&lt;&lt;YOUR_INITIALS&gt;&gt;_mobile_payments** from the application list.  Click the **Show** button underneath the **Consumer Key** section and copy the key shown.  Copy it to a text document so you can refer to it again throughout the labs.
+4. Choose the **&lt;&lt;YOUR_INITIALS&gt;&gt;_mobile_employees** from the application list.  Click the **Show** button underneath the **Consumer Key** section and copy the key shown.  Copy it to a text document so you can refer to it again throughout the labs.
 
 	![image alt text](./images/image_16.png)
 
@@ -251,7 +251,7 @@ Now that we have an API Key (the Consumer Key), we can test our proxy.
 
 4. Click **Start Trace Session**, then add **?apikey={the key you copied}** to the URL and click **Send**.
     * **note**: Ensure you don't have any extra spaces before the api key.
-    * ex. If the key you copied is *usWFw1YYMvXRIrl7H543cGbo26eNcnGu* then your final URL should look like this https://{**FQDN**}/v1/&lt;&lt;YOUR_INITIALS&gt;&gt;_payments?**apikey=usWFw1YYMvXRIrl7H543cGbo26eNcnGu** 
+    * ex. If the key you copied is *usWFw1YYMvXRIrl7H543cGbo26eNcnGu* then your final URL should look like this https://{**FQDN**}/v1/&lt;&lt;YOUR_INITIALS&gt;&gt;_employees?**apikey=usWFw1YYMvXRIrl7H543cGbo26eNcnGu** 
 
 5. In the resulting trace entry, click the "Verify API Key" policy and observe the attributes that are available.  The API Proxy context now includes everything Apigee knows about the request... The App Developer, the App, and the API Product to which the App is subscribed.
 
@@ -273,13 +273,13 @@ In this lab, we will create & customize a developer portal and publish the Payme
 
     1. Import Name - **&lt;&lt;YOUR_INITIALS&gt;&gt;_payment_spec**
 
-    2. Import Url - [https://raw.githubusercontent.com/kford/apijam-v4/master/Resources/Payments-Spec.yaml](https://raw.githubusercontent.com/kford/apijam-v4/master/Resources/Payments-Spec.yaml) 
+    2. Import Url - [https://raw.githubusercontent.com/apigee/apijam/master/Resources/employees-oas.json](https://raw.githubusercontent.com/apigee/apijam/master/Resources/employees-oas.json) 
 
-3. Select the newly imported **payment_spec**. 
+3. Select the newly imported **employees_spec**. 
 
 4. Replace **&lt;your-apigee-org-name&gt;** in **host** attribute with your Apigee Org name.
  
-5. Replace **&lt;your-api-base-path&gt;** in **basePath** attribute with your Payments API Proxy's base path.
+5. Replace **&lt;your-api-base-path&gt;** in **basePath** attribute with your Employees API Proxy's base path.
 
 6. The OpenAPI Spec, when updated, should look similar to this.
 
@@ -335,7 +335,7 @@ Your new portal is now online. You can visit it by going to: `https://<YOUR_ORG_
 ![image alt text](./images/image_27.png)
 8. Click on the API Doc link.
 ![image alt text](./images/image_28.png)
-9. Click **Try it out** and invoke the Payment API by providing a valid API key. (Hint - Use the API key from **Mobile Payments App** you created in the previous lab).
+9. Click **Try it out** and invoke the Payment API by providing a valid API key. (Hint - Use the API key from **Mobile Employees App** you created in the previous lab).
 
 ![image alt text](./images/image_29.png)
 
@@ -361,7 +361,7 @@ After you’ve generated some traffic, let’s make sure we are capturing the ri
 
 ![image alt text](./images/image_38.png)
 
-5. You should see a report similar to what is shown below.  Please note that it takes 5-10 minutes for API proxy requests to appear in these reports, so your report may need to be refreshed to capture the latest data.  Which payments were the most popular?  When you build custom reports, you may see entries that indicate '(not set)'.  This is likely because all requests do not populate your custom analytics field (an example would be if you're only capturing the dimension/metric in a particular API flow).  If you'd like to filter these out of the report, this can easily be achieved with a filter similar to the filter formula below <br />
+5. You should see a report similar to what is shown below.  Please note that it takes 5-10 minutes for API proxy requests to appear in these reports, so your report may need to be refreshed to capture the latest data.  Which employees were the most popular?  When you build custom reports, you may see entries that indicate '(not set)'.  This is likely because all requests do not populate your custom analytics field (an example would be if you're only capturing the dimension/metric in a particular API flow).  If you'd like to filter these out of the report, this can easily be achieved with a filter similar to the filter formula below <br />
 ```(client_app ne '(not set)')```
 
 
