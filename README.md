@@ -156,7 +156,7 @@ You should see a success response which looks like this:
 ```
 *NOTE - Execution time of this command could be a minute or two*
 
-Now if you go back to the Edge UI, you will notice that your Payment proxy is deployed on both test and prod environments. (This is visible in the "Deployments" pulldown throughout the proxy development UI and will require a page refresh)
+Now if you go back to the Edge UI, you will notice that your Employees proxy is deployed on both test and prod environments. (This is visible in the "Deployments" pulldown throughout the proxy development UI and will require a page refresh)
 
 ![image alt text](./images/image_10.png)
 
@@ -260,7 +260,7 @@ Now that we have an API Key (the Consumer Key), we can test our proxy.
 
 ### Summary
 
-In this lab, we will create & customize a developer portal and publish the Payment API onto the portal. 
+In this lab, we will create & customize a developer portal and publish the Employees API onto the portal. 
 
 #### Instructions
 
@@ -271,7 +271,7 @@ In this lab, we will create & customize a developer portal and publish the Payme
 
 2. Click **+ Spec** and select **Import URL**
 
-    1. Import Name - **&lt;&lt;YOUR_INITIALS&gt;&gt;_payment_spec**
+    1. Import Name - **&lt;&lt;YOUR_INITIALS&gt;&gt;_employees_spec**
 
     2. Import Url - [https://raw.githubusercontent.com/apigee/apijam/master/Resources/employees-oas.json](https://raw.githubusercontent.com/apigee/apijam/master/Resources/employees-oas.json) 
 
@@ -291,8 +291,8 @@ In this lab, we will create & customize a developer portal and publish the Payme
 
 1. Navigate to **Publish → Portals**
 1. Click on **+ Portals** to create a new portal. 
-    1. Name - **&lt;&lt;YOUR-INITIALS&gt;&gt;** PaymentPortal
-    2. Description - **&lt;&lt;YOUR-INITIALS&gt;&gt;** Payment Portal
+    1. Name - **&lt;&lt;YOUR-INITIALS&gt;&gt;** EmployeesPortal
+    2. Description - **&lt;&lt;YOUR-INITIALS&gt;&gt;** Employees Portal
     3. Select "Use the new theme and API reference docs (beta)"
     ![Complete portal dialog](./images/publish_portal_01.png)
 3. Click **Create.**
@@ -322,20 +322,20 @@ Your new portal is now online. You can visit it by going to: `https://<YOUR_ORG_
 1. Navigate to **Publish → Portals**
 2. Click on your portal to open the administrative pages and select **APIs.**
 3. Click **+ API**
-4. Select **&lt;&lt;YOUR_INITIALS&gt;&gt;_paymensts_silver** product and click **Next**.
+4. Select **&lt;&lt;YOUR_INITIALS&gt;&gt;_employees_silver** product and click **Next**.
 5. On the next screen,  select  "**Choose a different spec**" from the drop-down.
 ![image alt text](./images/image_25.png)
-1. Select your **Payment Spec** and click **Select** to continue.
+1. Select your **Employees Spec** and click **Select** to continue.
 ![image alt text](./images/image_26.png)
 1. If you'd like to include an image for your API Product to stand out in the catalog, you can upload one to the portal, use one that already exists, or refer to one by URL. Here is a search that you can use to find the URL of an image of a reasonable size, around 600x400. [Google Image Search](https://www.google.com/search?biw=1853&bih=987&tbs=isz%3Aex%2Ciszw%3A600%2Ciszh%3A400%2Cic%3Aspecific%2Cisc%3Ablack&tbm=isch&sa=1&ei=D8iQW9jyFfax0PEPvJ2mqAo&q=payment+icon&oq=payment+icon&gs_l=img.3..35i39j0i67j0l8.6435.6997..7132...0.0..0.89.557.7......1....1..gws-wiz-img.......0i7i30.AiVBlSaYYY8).  To use one of the images, click it and then right-click the resulting image and select "Copy image URL".  Here is [an example](http://www.offlinehr.com/tutorsjunction/wp-content/uploads/2016/10/payment-600x400.png)
 ![Configure Product](./images/publish_portal_02.png)
 ![Select Image](./images/publish_portal_03.png)
 1. When you click **Finish**, your API Product and its documentation will be published to the portal.
-7. Now if you go to the **Live Portal** you will see Payment API documentation under APIs menu.
+7. Now if you go to the **Live Portal** you will see Employees API documentation under APIs menu.
 ![image alt text](./images/image_27.png)
 8. Click on the API Doc link.
 ![image alt text](./images/image_28.png)
-9. Click **Try it out** and invoke the Payment API by providing a valid API key. (Hint - Use the API key from **Mobile Employees App** you created in the previous lab).
+9. Click **Try it out** and invoke the Employees API by providing a valid API key. (Hint - Use the API key from **Mobile Employees App** you created in the previous lab).
 
 ![image alt text](./images/image_29.png)
 
@@ -349,15 +349,14 @@ Apigee provides comprehensive metrics for all aspects of your API program except
 After you’ve generated some traffic, let’s make sure we are capturing the right data from that traffic so we can analyze it via Custom Reports. 
 
 1. Navigate to **Develop → API Proxies**. Select your API Proxy.
-2. Click on the **Develop** tab in the upper right.  Then click on **GET /:id** under **Proxy Endpoints**.  In the upper pane, you will see the two policies **Statistics Collector** and **Extract Variables** that we’ve already implemented for you.  Take a look at these two policies but don’t change them -- they are used for creating Custom Reports (next step).  Their purpose is to store non-standard metrics and dimensions in analytics.  In this example, the company that received the payment and the app that was used to make the payment.
-
+2. Click on the **Develop** tab in the upper right.  Then click on **GET /:id** under **Proxy Endpoints**.  In the upper pane, you will see the two policies **Statistics Collector** and **Extract Variables** that we’ve already implemented for you.  Take a look at these two policies but don’t change them -- they are used for creating Custom Reports (next step).  Their purpose is to store non-standard metrics and dimensions in analytics.  
 ![image alt text](./images/image_36.png)
 
 3.   Now click on **Analyze > Reports** in the left pane.  Then click on **+Custom Report**
 
 ![image alt text](./images/image_37.png)
 
-4. Fill in the **Report Name**, **Report Description**, and choose **Column** as the **Chart Type**.  Then select **Traffic** in the **Metric** dropdown and choose **Sum** for **Aggregate Function**.  Finally, choose **payment_name** in the **Dimension** dropdown and click **Save** in the lower right.
+4. Fill in the **Report Name**, **Report Description**, and choose **Column** as the **Chart Type**.  Then select **Traffic** in the **Metric** dropdown and choose **Sum** for **Aggregate Function**.  Finally, choose **employee_name** in the **Dimension** dropdown and click **Save** in the lower right.
 
 ![image alt text](./images/image_38.png)
 
